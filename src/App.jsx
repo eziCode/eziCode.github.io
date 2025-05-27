@@ -31,7 +31,7 @@ export default function HomePage() {
 			<section className="flex flex-col items-center justify-center text-center py-12 px-4">
 				<h1 className="text-5xl font-bold mb-4">Hi, I'm Ezra Akresh.</h1>
 				<p className="text-xl mb-6">
-					Full-Stack Developer • Designer • Problem Solver
+					Software Developer • Designer • Problem Solver
 				</p>
 				<div className="flex gap-4">
 					<a
