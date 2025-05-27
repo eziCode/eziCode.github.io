@@ -9,7 +9,7 @@ const projects = [
 		title: "Amazon Alexa Skill: Medical Tracker",
 		description: "Developed an Alexa skill to track medication schedules and medical activities.",
 		link: "https://your-portfolio-link.com",
-		image: "/images/my_med_tracker_icon.png",
+		image: "images/my_med_tracker_icon.png",
 	},
 	{
 		title: "FIRST Robotics Competition Programming w/ Team 4096",
@@ -18,7 +18,7 @@ const projects = [
 			{ label: "Robot 2025 Repo", url: "https://github.com/CtrlZ-FRC4096/Robot-2025" },
 			{ label: "Robot 2024 Repo", url: "https://github.com/CtrlZ-FRC4096/Robot-2024" },
 		],
-		image: "/images/frc_4096_icon.png",
+		image: "images/frc_4096_icon.png",
 	},
 ];
 
