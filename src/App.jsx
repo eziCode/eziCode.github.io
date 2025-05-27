@@ -71,9 +71,7 @@ export default function HomePage() {
 			<section className="max-w-4xl mx-auto py-8 px-4 text-center">
 				<h2 className="text-3xl font-semibold mb-4">About Me</h2>
 				<p className="text-lg text-gray-600">
-					I'm a passionate developer who loves to create and help people. I
-					specialize in back-end development but have experience working with a
-					variety of languages and frameworks.
+					I'm a developer who's passionate about creating and helping people. I specialize in back-end development but have experience working with a variety of languages and frameworks.
 				</p>
 			</section>
 
