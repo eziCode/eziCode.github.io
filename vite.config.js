@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 
 export default defineConfig({
-  base: '/eziCode.github.io/',
+  base: '/eziCode.github.io',
   plugins: [react()],
   resolve: {
     alias: {
@@ -11,6 +11,6 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
   },
 })
