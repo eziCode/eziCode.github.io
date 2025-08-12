@@ -212,14 +212,30 @@ export default function HomePage() {
 				>
 					Send a Message
 				</Button>
-				{showContact && (
-					<div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
-						<div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 animate-scale-in">
+				
+			</section>
+			{showContact && (
+					<div 
+						className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+						onClick={() => setShowContact(false)}
+					>
+						<div 
+							className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto transform scale-100 transition-transform duration-300 relative"
+							onClick={(e) => e.stopPropagation()}
+						>
+							{/* Close button */}
+							<button
+								onClick={() => setShowContact(false)}
+								className="absolute top-4 right-4 z-10 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200"
+							>
+								<svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+								</svg>
+							</button>
 							<ContactForm onClose={() => setShowContact(false)} />
 						</div>
 					</div>
 				)}
-			</section>			{/* Footer */}
 			<footer className="text-center text-sm text-gray-500 py-6 bg-white/60 backdrop-blur-sm relative z-10">
 				© {new Date().getFullYear()} Ezra Akresh. All rights reserved.
 			</footer>
