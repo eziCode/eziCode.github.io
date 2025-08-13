@@ -24,11 +24,18 @@ const projects = [
 
 export default function HomePage() {
   const [showContact, setShowContact] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false);
+  const [animationsTriggered, setAnimationsTriggered] = useState(false);
 
   useEffect(() => {
-    setHasMounted(true);
-  }, []);
+    // Use a small delay to ensure DOM is ready, but prevent retriggering
+    const timer = setTimeout(() => {
+      if (!animationsTriggered) {
+        setAnimationsTriggered(true);
+      }
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [animationsTriggered]);
 
   useEffect(() => {
     if (showContact) {
@@ -45,30 +52,30 @@ export default function HomePage() {
     <div className="min-h-screen w-full bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50 text-gray-800 flex flex-col relative overflow-hidden">
       {/* Background animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-300/20 to-pink-300/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-300/20 to-cyan-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-300/20 to-pink-300/20 rounded-full blur-3xl animate-gentle-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-300/20 to-cyan-300/20 rounded-full blur-3xl animate-gentle-pulse animation-delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-300/10 to-purple-300/10 rounded-full blur-3xl animate-spin-slow"></div>
       </div>
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-16 px-4 relative z-10">
-        <div className={hasMounted ? "animate-fade-in-up" : ""}>
+        <div className={animationsTriggered ? "animate-fade-in-up" : ""}>
           <h1
             className={`text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent ${
-              hasMounted ? "animate-gradient-x" : ""
+              animationsTriggered ? "animate-gradient-x" : ""
             }`}
           >
             Hi, I'm Ezra Akresh.
           </h1>
           <p
             className={`text-2xl mb-8 text-gray-700 ${
-              hasMounted ? "animate-fade-in-up delay-300" : ""
+              animationsTriggered ? "animate-fade-in-up animation-delay-300" : ""
             }`}
           >
             Software Developer • Designer • Problem Solver
           </p>
         </div>
-        <div className={`flex gap-6 ${hasMounted ? "animate-fade-in-up delay-500" : ""}`}>
+        <div className={`flex gap-6 ${animationsTriggered ? "animate-fade-in-up animation-delay-500" : ""}`}>
           <a href="https://github.com/eziCode" target="_blank" rel="noopener noreferrer">
             <Button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0 shadow-xl
              hover:from-purple-700 hover:to-blue-700 hover:shadow-2xl hover:scale-105
@@ -93,7 +100,7 @@ export default function HomePage() {
 
       {/* About Section */}
       <section className="max-w-4xl mx-auto py-12 px-4 text-center relative z-10">
-        <div className={hasMounted ? "animate-fade-in-up" : ""}>
+        <div className={animationsTriggered ? "animate-fade-in-up" : ""}>
           <h2 className="text-4xl font-semibold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             About Me
           </h2>
@@ -176,9 +183,9 @@ export default function HomePage() {
             <span
               key={skill}
               className={`bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:scale-110 transform transition-all duration-300 cursor-default ${
-                hasMounted ? "animate-fade-in-up" : ""
+                animationsTriggered ? "animate-fade-in-up" : ""
               }`}
-              style={hasMounted ? { animationDelay: `${index * 100}ms` } : {}}
+              style={animationsTriggered ? { animationDelay: `${index * 100}ms` } : {}}
             >
               {skill}
             </span>
