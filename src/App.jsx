@@ -58,7 +58,7 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-16 px-4 relative z-10">
+      <section className="flex flex-col items-center justify-center text-center pt-16 pb-8 px-4 relative z-10">
         <div className={animationsTriggered ? "animate-fade-in-up" : ""}>
           <h1
             className={`text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent ${
@@ -99,7 +99,7 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="max-w-4xl mx-auto py-12 px-4 text-center relative z-10">
+      <section className="max-w-4xl mx-auto pt-4 pb-12 px-4 text-center relative z-10">
         <div className={animationsTriggered ? "animate-fade-in-up" : ""}>
           <h2 className="text-4xl font-semibold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             About Me
