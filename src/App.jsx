@@ -129,12 +129,11 @@ export default function HomePage() {
                 className="w-[350px] rounded-2xl shadow-2xl border-0 bg-white/90 backdrop-blur-sm hover:shadow-3xl hover:scale-105 transform transition-all duration-500 ease-out group overflow-hidden"
               >
                 <CardContent className="p-6 flex flex-col items-center relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-100/50 to-blue-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="mb-6 w-full h-[220px] flex items-center justify-center relative z-10">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="max-h-full max-w-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
+                      className="max-h-full max-w-full object-cover rounded-xl transition-transform duration-500"
                     />
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-center text-gray-800 relative z-10">
