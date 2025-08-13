@@ -141,22 +141,20 @@ button:focus-visible {
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes gradient-x {
   0%, 100% {
-    background-size: 200% 200%;
-    background-position: left center;
+    background-position: 0% 50%;
   }
   50% {
-    background-size: 200% 200%;
-    background-position: right center;
+    background-position: 100% 50%;
   }
 }
 
@@ -171,33 +169,34 @@ button:focus-visible {
 
 @keyframes gentle-pulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.4;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out forwards;
-  animation-fill-mode: both;
+  animation: fade-in-up 0.6s ease-out forwards;
+  will-change: opacity, transform;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translate3d(0, 30px, 0);
 }
 
 .animate-gradient-x {
+  background-size: 400% 400%;
   animation: gradient-x 3s ease infinite;
-  animation-fill-mode: both;
+  will-change: background-position;
 }
 
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
-  animation-fill-mode: both;
+  will-change: transform;
 }
 
 .animate-gentle-pulse {
-  animation: gentle-pulse 4s ease-in-out infinite;
-  animation-fill-mode: both;
+  animation: gentle-pulse 3s ease-in-out infinite;
+  will-change: opacity;
 }
 
 .animation-delay-300 {
@@ -210,6 +209,17 @@ button:focus-visible {
 
 .animation-delay-1000 {
   animation-delay: 1000ms;
+}
+
+/* Performance optimized transitions */
+.transition-optimized {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s ease-out;
+  will-change: transform, box-shadow, opacity;
+}
+
+.transition-optimized-slow {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  will-change: transform, box-shadow;
 }
 
 /* Hover effects */

@@ -85,7 +85,7 @@ export default function HomePage() {
           <a href="https://github.com/eziCode" target="_blank" rel="noopener noreferrer">
             <Button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0 shadow-xl
              hover:from-purple-700 hover:to-blue-700 hover:shadow-2xl hover:scale-105
-             active:scale-95 transform transition-all duration-300 ease-out
+             active:scale-95 transform transition-optimized
              focus:ring-4 focus:ring-purple-300 focus:outline-none px-8 py-3 text-lg font-semibold">
               View Projects
             </Button>
@@ -94,7 +94,7 @@ export default function HomePage() {
             <Button
               className="bg-white text-purple-600 border-2 border-purple-600 shadow-xl
              hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:text-white hover:border-transparent hover:shadow-2xl hover:scale-105
-             active:scale-95 transform transition-all duration-300 ease-out
+             active:scale-95 transform transition-optimized
              focus:ring-4 focus:ring-purple-300 focus:outline-none px-8 py-3 text-lg font-semibold"
               variant="outline"
             >
@@ -126,14 +126,14 @@ export default function HomePage() {
             {projects.map((project, idx) => (
               <Card
                 key={idx}
-                className="w-[350px] rounded-2xl shadow-2xl border-0 bg-white/90 backdrop-blur-sm hover:shadow-3xl hover:scale-105 transform transition-all duration-500 ease-out group overflow-hidden"
+                className="w-[350px] rounded-2xl shadow-2xl border-0 bg-white/90 hover:shadow-3xl hover:scale-105 transform transition-transform duration-300 ease-out group overflow-hidden"
               >
                 <CardContent className="p-6 flex flex-col items-center relative">
                   <div className="mb-6 w-full h-[220px] flex items-center justify-center relative z-10">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="max-h-full max-w-full object-cover rounded-xl transition-transform duration-500"
+                      className="max-h-full max-w-full object-cover rounded-xl transition-transform duration-300"
                     />
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-center text-gray-800 relative z-10">
@@ -187,7 +187,7 @@ export default function HomePage() {
           {["JavaScript", "SQL", "Kotlin", "Python", "Swift", "C++"].map((skill, index) => (
             <span
               key={skill}
-              className={`bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:scale-110 transform transition-all duration-300 cursor-default ${
+              className={`bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:scale-110 transform transition-optimized cursor-default ${
                 animationsTriggered ? "animate-fade-in-up" : ""
               }`}
               style={animationsTriggered ? { animationDelay: `${index * 100}ms` } : {}}
@@ -207,19 +207,19 @@ export default function HomePage() {
         <div className="flex justify-center gap-8 mb-8">
           <a
             href="mailto:ezraakresh@gmail.com"
-            className="text-indigo-600 hover:text-purple-600 transform hover:scale-125 transition-all duration-300 p-3 rounded-full bg-white/60 backdrop-blur-sm shadow-lg hover:shadow-xl"
+            className="text-indigo-600 hover:text-purple-600 transform hover:scale-125 transition-optimized p-3 rounded-full bg-white/80 shadow-lg hover:shadow-xl"
           >
             <Mail size={28} />
           </a>
           <a
             href="https://github.com/ezraakresh"
-            className="text-indigo-600 hover:text-purple-600 transform hover:scale-125 transition-all duration-300 p-3 rounded-full bg-white/60 backdrop-blur-sm shadow-lg hover:shadow-xl"
+            className="text-indigo-600 hover:text-purple-600 transform hover:scale-125 transition-optimized p-3 rounded-full bg-white/80 shadow-lg hover:shadow-xl"
           >
             <Github size={28} />
           </a>
           <a
             href="https://www.linkedin.com/in/ezra-akresh-638358314/"
-            className="text-indigo-600 hover:text-purple-600 transform hover:scale-125 transition-all duration-300 p-3 rounded-full bg-white/60 backdrop-blur-sm shadow-lg hover:shadow-xl"
+            className="text-indigo-600 hover:text-purple-600 transform hover:scale-125 transition-optimized p-3 rounded-full bg-white/80 shadow-lg hover:shadow-xl"
           >
             <Linkedin size={28} />
           </a>
@@ -227,7 +227,7 @@ export default function HomePage() {
         <Button
           className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white border-0 shadow-xl
           hover:from-indigo-700 hover:to-purple-700 hover:shadow-2xl hover:scale-105
-          active:scale-95 transform transition-all duration-300 ease-out
+          active:scale-95 transform transition-optimized
           focus:ring-4 focus:ring-indigo-300 focus:outline-none px-8 py-3 text-lg font-semibold"
           onClick={() => setShowContact(true)}
         >
