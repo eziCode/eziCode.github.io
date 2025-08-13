@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Github, Linkedin } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContactForm from "@/components/contact_form";
 
 const projects = [
@@ -25,16 +25,26 @@ const projects = [
 export default function HomePage() {
 	const [showContact, setShowContact] = useState(false);
 
+	useEffect(() => {
+		if (showContact) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'unset';
+		}
+
+		return () => {
+			document.body.style.overflow = 'unset';
+		};
+	}, [showContact]);
+
 	return (
 		<div className="min-h-screen w-full bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50 text-gray-800 flex flex-col relative overflow-hidden">
-			{/* Animated background elements */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				<div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-300/20 to-pink-300/20 rounded-full blur-3xl animate-pulse"></div>
 				<div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-300/20 to-cyan-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
 				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-300/10 to-purple-300/10 rounded-full blur-3xl animate-spin-slow"></div>
 			</div>
 			
-			{/* Hero Section */}
 			<section className="flex flex-col items-center justify-center text-center py-16 px-4 relative z-10">
 				<div className="animate-fade-in-up">
 					<h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent animate-gradient-x">
@@ -76,7 +86,6 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* About Section */}
 			<section className="max-w-4xl mx-auto py-12 px-4 text-center relative z-10">
 				<div className="animate-fade-in-up">
 					<h2 className="text-4xl font-semibold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -88,7 +97,6 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* Projects Section */}
 			<section className="bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm py-12 px-4 relative z-10">
 				<div className="max-w-6xl mx-auto">
 					<h2 className="text-4xl font-semibold text-center mb-12 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
@@ -115,7 +123,7 @@ export default function HomePage() {
 									<p className="text-sm text-gray-600 mb-6 text-center relative z-10">
 										{project.description}
 									</p>
-									{/* Conditionally render multiple links if present */}
+									
 									{project.links ? (
 										<div className="flex gap-3 w-full justify-center relative z-10">
 											{project.links.map((link, i) => (
@@ -151,7 +159,6 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* Skills Section */}
 			<section className="py-12 px-4 max-w-4xl mx-auto text-center relative z-10">
 				<h2 className="text-4xl font-semibold mb-10 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
 					Skills & Tools
@@ -176,8 +183,6 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* Contact Section */}
-			{/* Contact Section */}
 			<section className="bg-gradient-to-br from-indigo-100/80 to-purple-100/80 backdrop-blur-sm py-12 px-4 text-center relative z-10">
 				<h2 className="text-4xl font-semibold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
 					Get In Touch
@@ -223,15 +228,6 @@ export default function HomePage() {
 							className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto transform scale-100 transition-transform duration-300 relative"
 							onClick={(e) => e.stopPropagation()}
 						>
-							{/* Close button */}
-							<button
-								onClick={() => setShowContact(false)}
-								className="absolute top-4 right-4 z-10 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200"
-							>
-								<svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-								</svg>
-							</button>
 							<ContactForm onClose={() => setShowContact(false)} />
 						</div>
 					</div>
