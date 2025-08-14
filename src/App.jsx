@@ -26,6 +26,12 @@ const projects = [
 	link: "https://github.com/eziCode/Localite",
 	image: "images/localite_img.png",
   },
+  {
+    title: "Wolfram Summer Research Program 2024",
+    description: "Determined largest grid in English language so each box is one letter & each row/col is valid word.",
+    link: "https://community.wolfram.com/groups/-/m/t/3214394",
+    image: "images/wolfram_research_icon.png",
+  }
 ];
 
 export default function HomePage() {
@@ -126,51 +132,53 @@ export default function HomePage() {
             {projects.map((project, idx) => (
               <Card
                 key={idx}
-                className="w-[350px] rounded-2xl shadow-2xl border-0 bg-white/90 hover:shadow-3xl hover:scale-105 transform transition-transform duration-300 ease-out group overflow-hidden"
+                className="w-[350px] h-[500px] rounded-2xl shadow-2xl border-0 bg-white/90 hover:shadow-3xl hover:scale-105 transform transition-transform duration-300 ease-out group overflow-hidden"
               >
-                <CardContent className="p-6 flex flex-col items-center relative">
-                  <div className="mb-6 w-full h-[220px] flex items-center justify-center relative z-10">
+                <CardContent className="p-6 flex flex-col items-center relative h-full">
+                  <div className="mb-6 w-full h-[180px] flex items-center justify-center relative z-10 flex-shrink-0">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="max-h-full max-w-full object-cover rounded-xl transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-center text-gray-800 relative z-10">
+                  <h3 className="text-xl font-semibold mb-3 text-center text-gray-800 relative z-10 flex-shrink-0">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-6 text-center relative z-10">
+                  <p className="text-sm text-gray-600 mb-6 text-center relative z-10 flex-grow">
                     {project.description}
                   </p>
 
-                  {project.links ? (
-                    <div className="flex gap-3 w-full justify-center relative z-10">
-                      {project.links.map((link, i) => (
-                        <a
-                          key={i}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1"
-                        >
-                          <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 rounded-xl px-4 py-3 transition-all duration-300 w-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform">
-                            {link.label}
-                          </Button>
-                        </a>
-                      ))}
-                    </div>
-                  ) : (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full flex justify-center relative z-10"
-                    >
-                      <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 rounded-xl px-6 py-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform">
-                        View Project
-                      </Button>
-                    </a>
-                  )}
+                  <div className="flex-shrink-0 w-full px-3">
+                    {project.links ? (
+                      <div className="flex gap-2 w-full justify-center relative z-10">
+                        {project.links.map((link, i) => (
+                          <a
+                            key={i}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 rounded-xl px-2 py-2 text-xs transition-all duration-300 w-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform">
+                              {link.label}
+                            </Button>
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex justify-center relative z-10"
+                      >
+                        <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 rounded-xl px-6 py-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform">
+                          View Project
+                        </Button>
+                      </a>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
