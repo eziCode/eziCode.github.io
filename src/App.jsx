@@ -220,7 +220,7 @@ export default function HomePage() {
             <Mail size={28} />
           </a>
           <a
-            href="https://github.com/ezraakresh"
+            href="https://github.com/eziCode"
             className="text-indigo-600 hover:text-purple-600 transform hover:scale-125 transition-optimized p-3 rounded-full bg-white/80 shadow-lg hover:shadow-xl"
           >
             <Github size={28} />
