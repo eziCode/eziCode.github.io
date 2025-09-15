@@ -96,7 +96,7 @@ export default function HomePage() {
               View Projects
             </Button>
           </a>
-          <a href="/ezra_cv.pdf" download>
+          <a href="/ezra_akresh_resume.pdf" download>
             <Button
               className="bg-white text-purple-600 border-2 border-purple-600 shadow-xl
              hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:text-white hover:border-transparent hover:shadow-2xl hover:scale-105
