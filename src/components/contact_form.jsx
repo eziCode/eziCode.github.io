@@ -62,36 +62,36 @@ export default function ContactForm({ onClose }) {
 
   if (showThankYou) {
     return (
-      <div className="p-10 flex flex-col items-center justify-center text-center animate-fade-in">
-        <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mb-6 animate-bounce shadow-xl">
+      <div className="p-10 flex flex-col items-center justify-center text-center animate-fade-in-up">
+        <div className="w-20 h-20 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-full flex items-center justify-center mb-6 animate-glow-pulse shadow-glow-cyan">
           <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <div className="text-2xl font-bold mb-3 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+        <div className="text-2xl font-bold mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
           Thanks for your message!
         </div>
-        <div className="text-gray-600 text-base">You'll be redirected shortly.</div>
+        <div className="text-gray-400 text-base">You'll be redirected shortly.</div>
       </div>
     );
   }
 
   if (showInvalidEmail) {
     return (
-      <div className="p-10 flex flex-col items-center justify-center text-center animate-fade-in">
-        <div className="w-20 h-20 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mb-6 shadow-xl">
+      <div className="p-10 flex flex-col items-center justify-center text-center animate-fade-in-up">
+        <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
           <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </div>
-        <div className="text-2xl font-bold mb-3 bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
+        <div className="text-2xl font-bold mb-3 bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">
           Invalid Email Address
         </div>
-        <div className="text-gray-600 text-base mb-6">
+        <div className="text-gray-400 text-base mb-6">
           That email address does not exist. Please re-enter your email.
         </div>
         <button
-          className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300"
+          className="bg-dark-elevated border border-neon-purple/30 text-neon-purple hover:bg-neon-purple/10 hover:border-neon-purple hover:shadow-glow-purple-sm transition-optimized px-8 py-3 rounded-xl font-semibold"
           onClick={() => setShowInvalidEmail(false)}
         >
           Return to Form
@@ -104,10 +104,10 @@ export default function ContactForm({ onClose }) {
     <div className="p-8">
       {/* Header */}
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+        <h3 className="text-3xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent mb-2">
           Send a Message
         </h3>
-        <p className="text-gray-600 text-lg">I'd love to hear from you!</p>
+        <p className="text-gray-400 text-lg">I'd love to hear from you!</p>
       </div>
       
       {/* Form */}
@@ -118,7 +118,7 @@ export default function ContactForm({ onClose }) {
               name="name"
               placeholder="Your Name"
               required
-              className="w-full border-2 border-gray-300 p-4 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white focus:bg-white text-gray-900 placeholder-gray-400 text-lg shadow-sm"
+              className="w-full bg-dark-elevated border border-gray-800/50 text-white placeholder-gray-500 p-4 rounded-xl focus:border-neon-cyan focus:outline-none focus:shadow-glow-cyan-sm transition-all duration-300 text-lg"
               value={formValues.name}
               onChange={e => setFormValues({ ...formValues, name: e.target.value })}
             />
@@ -130,7 +130,7 @@ export default function ContactForm({ onClose }) {
               type="email"
               placeholder="Your Email"
               required
-              className="w-full border-2 border-gray-300 p-4 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white focus:bg-white text-gray-900 placeholder-gray-400 text-lg shadow-sm"
+              className="w-full bg-dark-elevated border border-gray-800/50 text-white placeholder-gray-500 p-4 rounded-xl focus:border-neon-cyan focus:outline-none focus:shadow-glow-cyan-sm transition-all duration-300 text-lg"
               value={formValues.email}
               onChange={e => setFormValues({ ...formValues, email: e.target.value })}
             />
@@ -142,7 +142,7 @@ export default function ContactForm({ onClose }) {
               placeholder="Your Message"
               required
               rows={5}
-              className="w-full border-2 border-gray-300 p-4 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white focus:bg-white resize-none text-gray-900 placeholder-gray-400 text-lg shadow-sm"
+              className="w-full bg-dark-elevated border border-gray-800/50 text-white placeholder-gray-500 p-4 rounded-xl focus:border-neon-cyan focus:outline-none focus:shadow-glow-cyan-sm transition-all duration-300 resize-none text-lg"
               value={formValues.message}
               onChange={e => setFormValues({ ...formValues, message: e.target.value })}
             />
@@ -156,8 +156,8 @@ export default function ContactForm({ onClose }) {
             disabled={checkingEmail}
             className={`flex-1 py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform ${
               checkingEmail
-                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                : "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+                ? "bg-dark-elevated text-gray-500 cursor-not-allowed border border-gray-800/50"
+                : "bg-dark-elevated border border-neon-purple/30 text-neon-purple hover:bg-neon-purple/10 hover:border-neon-purple hover:shadow-glow-purple-sm active:scale-95"
             }`}
           >
             {checkingEmail ? (
@@ -176,7 +176,7 @@ export default function ContactForm({ onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-4 px-6 rounded-xl font-semibold text-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transform hover:scale-105 active:scale-95 transition-all duration-300"
+            className="flex-1 py-4 px-6 rounded-xl font-semibold text-lg bg-dark-elevated border border-gray-800/50 text-gray-400 hover:text-gray-300 hover:border-gray-700/50 transform hover:scale-105 active:scale-95 transition-all duration-300"
           >
             Cancel
           </button>
