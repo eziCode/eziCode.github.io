@@ -5,11 +5,7 @@ export default function ContactForm({ onClose }) {
   const [showThankYou, setShowThankYou] = useState(false);
   const [showInvalidEmail, setShowInvalidEmail] = useState(false);
   const [checkingEmail, setCheckingEmail] = useState(false);
-  const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formValues, setFormValues] = useState({ name: "", email: "", message: "" });
 
   async function verifyEmailExists(email) {
     const res = await fetch(
@@ -25,75 +21,66 @@ export default function ContactForm({ onClose }) {
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const message = form.message.value.trim();
-
     setFormValues({ name, email, message });
-
-    if (!name || !email || !message) {
-      return;
-    }
-
+    if (!name || !email || !message) return;
     setCheckingEmail(true);
-
     const exists = await verifyEmailExists(email);
-    if (!exists) {
-      setShowInvalidEmail(true);
-      setCheckingEmail(false);
-      return;
-    }
-
+    if (!exists) { setShowInvalidEmail(true); setCheckingEmail(false); return; }
     setShowThankYou(true);
-
-    emailjs
-      .sendForm('service_0wysh5j', 'template_h9sydqm', form, 'zuhuIQYigjI5aytn4')
-      .then(() => {
-        emailjs.send(
-          'service_0wysh5j',
-          'template_mfq1l17',
-          {
-            email: email,
-            name: name,
-          },
-          'zuhuIQYigjI5aytn4'
-        ).then(() => {
-          onClose();
-        });
-      });
+    emailjs.sendForm('service_0wysh5j', 'template_h9sydqm', form, 'zuhuIQYigjI5aytn4')
+      .then(() => emailjs.send('service_0wysh5j', 'template_mfq1l17', { email, name }, 'zuhuIQYigjI5aytn4')
+        .then(() => onClose()));
   }
 
   if (showThankYou) {
     return (
-      <div className="p-10 flex flex-col items-center justify-center text-center animate-fade-in-up">
-        <div className="w-20 h-20 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-full flex items-center justify-center mb-6 animate-glow-pulse shadow-glow-cyan">
-          <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+      <div style={{ padding: "48px 32px", textAlign: "center" }}>
+        <div style={{
+          width: 40, height: 40, border: "1px solid var(--accent)", borderRadius: 2,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          margin: "0 auto 20px", color: "var(--accent)",
+        }}>
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <div className="text-2xl font-bold mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-          Thanks for your message!
-        </div>
-        <div className="text-gray-400 text-base">You'll be redirected shortly.</div>
+        <p style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase",
+          color: "var(--accent)", marginBottom: 8,
+        }}>
+          message sent
+        </p>
+        <p style={{ fontSize: "0.82rem", color: "var(--text-muted)" }}>
+          You'll be redirected shortly.
+        </p>
       </div>
     );
   }
 
   if (showInvalidEmail) {
     return (
-      <div className="p-10 flex flex-col items-center justify-center text-center animate-fade-in-up">
-        <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
-          <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+      <div style={{ padding: "48px 32px", textAlign: "center" }}>
+        <div style={{
+          width: 40, height: 40, border: "1px solid var(--border)", borderRadius: 2,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          margin: "0 auto 20px", color: "var(--text-muted)",
+        }}>
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </div>
-        <div className="text-2xl font-bold mb-3 bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">
-          Invalid Email Address
-        </div>
-        <div className="text-gray-400 text-base mb-6">
-          That email address does not exist. Please re-enter your email.
-        </div>
-        <button
-          className="bg-dark-elevated border border-neon-purple/30 text-neon-purple hover:bg-neon-purple/10 hover:border-neon-purple hover:shadow-glow-purple-sm transition-optimized px-8 py-3 rounded-xl font-semibold"
-          onClick={() => setShowInvalidEmail(false)}
-        >
+        <p style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase",
+          color: "var(--text-muted)", marginBottom: 8,
+        }}>
+          invalid address
+        </p>
+        <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginBottom: 24 }}>
+          That email address does not appear to be deliverable. Please re-enter.
+        </p>
+        <button className="btn-outline" onClick={() => setShowInvalidEmail(false)}>
           Return to Form
         </button>
       </div>
@@ -101,83 +88,100 @@ export default function ContactForm({ onClose }) {
   }
 
   return (
-    <div className="p-8">
+    <div style={{ padding: "32px" }}>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h3 className="text-3xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent mb-2">
-          Send a Message
-        </h3>
-        <p className="text-gray-400 text-lg">I'd love to hear from you!</p>
-      </div>
-      
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-4">
-          <div className="relative">
-            <input
-              name="name"
-              placeholder="Your Name"
-              required
-              className="w-full bg-dark-elevated border border-gray-800/50 text-white placeholder-gray-500 p-4 rounded-xl focus:border-neon-cyan focus:outline-none focus:shadow-glow-cyan-sm transition-all duration-300 text-lg"
-              value={formValues.name}
-              onChange={e => setFormValues({ ...formValues, name: e.target.value })}
-            />
-          </div>
-          
-          <div className="relative">
-            <input
-              name="email"
-              type="email"
-              placeholder="Your Email"
-              required
-              className="w-full bg-dark-elevated border border-gray-800/50 text-white placeholder-gray-500 p-4 rounded-xl focus:border-neon-cyan focus:outline-none focus:shadow-glow-cyan-sm transition-all duration-300 text-lg"
-              value={formValues.email}
-              onChange={e => setFormValues({ ...formValues, email: e.target.value })}
-            />
-          </div>
-          
-          <div className="relative">
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              required
-              rows={5}
-              className="w-full bg-dark-elevated border border-gray-800/50 text-white placeholder-gray-500 p-4 rounded-xl focus:border-neon-cyan focus:outline-none focus:shadow-glow-cyan-sm transition-all duration-300 resize-none text-lg"
-              value={formValues.message}
-              onChange={e => setFormValues({ ...formValues, message: e.target.value })}
-            />
-          </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
+        <div>
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.62rem", letterSpacing: "0.14em", textTransform: "uppercase",
+            color: "var(--text-faint)", marginBottom: 4,
+          }}>
+            send_message
+          </p>
+          <h3 style={{ fontSize: "0.95rem", fontWeight: 500, color: "var(--text-primary)" }}>
+            Get in Touch
+          </h3>
         </div>
-        
-        {/* Buttons */}
-        <div className="flex gap-4 pt-4">
+        <button
+          onClick={onClose}
+          style={{
+            background: "none", border: "none", cursor: "pointer",
+            color: "var(--text-faint)", fontSize: "1.1rem", lineHeight: 1,
+            padding: "2px 4px",
+          }}
+          aria-label="Close"
+        >
+          ✕
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div>
+          <label style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase",
+            color: "var(--text-faint)", display: "block", marginBottom: 5,
+          }}>Name</label>
+          <input
+            name="name"
+            placeholder="Your name"
+            required
+            className="field-input"
+            value={formValues.name}
+            onChange={e => setFormValues({ ...formValues, name: e.target.value })}
+          />
+        </div>
+
+        <div>
+          <label style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase",
+            color: "var(--text-faint)", display: "block", marginBottom: 5,
+          }}>Email</label>
+          <input
+            name="email"
+            type="email"
+            placeholder="your@email.com"
+            required
+            className="field-input"
+            value={formValues.email}
+            onChange={e => setFormValues({ ...formValues, email: e.target.value })}
+          />
+        </div>
+
+        <div>
+          <label style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase",
+            color: "var(--text-faint)", display: "block", marginBottom: 5,
+          }}>Message</label>
+          <textarea
+            name="message"
+            placeholder="Your message..."
+            required
+            rows={5}
+            className="field-input"
+            style={{ resize: "vertical" }}
+            value={formValues.message}
+            onChange={e => setFormValues({ ...formValues, message: e.target.value })}
+          />
+        </div>
+
+        <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
           <button
             type="submit"
             disabled={checkingEmail}
-            className={`flex-1 py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform ${
-              checkingEmail
-                ? "bg-dark-elevated text-gray-500 cursor-not-allowed border border-gray-800/50"
-                : "bg-dark-elevated border border-neon-purple/30 text-neon-purple hover:bg-neon-purple/10 hover:border-neon-purple hover:shadow-glow-purple-sm active:scale-95"
-            }`}
+            className="btn-outline"
+            style={{
+              flex: 1, textAlign: "center",
+              opacity: checkingEmail ? 0.5 : 1,
+              cursor: checkingEmail ? "not-allowed" : "pointer",
+            }}
           >
-            {checkingEmail ? (
-              <span className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Checking...
-              </span>
-            ) : (
-              "Send Message"
-            )}
+            {checkingEmail ? "Verifying..." : "Send Message"}
           </button>
-          
-          <button
-            type="button"
-            onClick={onClose}
-            className="flex-1 py-4 px-6 rounded-xl font-semibold text-lg bg-dark-elevated border border-gray-800/50 text-gray-400 hover:text-gray-300 hover:border-gray-700/50 transform hover:scale-105 active:scale-95 transition-all duration-300"
-          >
+          <button type="button" onClick={onClose} className="btn-outline">
             Cancel
           </button>
         </div>
