@@ -338,18 +338,55 @@ function Desk({ progressRef }) {
   );
 }
 
+/* ─── Background dome ─── */
+function Background() {
+  const texture = useMemo(() => {
+    const size = 512;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    const gradient = ctx.createRadialGradient(
+      size * 0.5,
+      size * 0.4,
+      size * 0.08,
+      size * 0.5,
+      size * 0.5,
+      size * 0.6,
+    );
+    gradient.addColorStop(0, 'rgba(110, 155, 205, 0.25)');
+    gradient.addColorStop(0.4, 'rgba(20, 32, 50, 0.8)');
+    gradient.addColorStop(1, 'rgba(6, 12, 22, 1.0)');
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+  }, []);
+
+  return (
+    <mesh position={[0, 0.5, -20]} rotation={[0, 0, 0]}>
+      <sphereGeometry args={[70, 32, 32]} />
+      <meshBasicMaterial map={texture} side={THREE.BackSide} toneMapped={false} />
+    </mesh>
+  );
+}
+
 /* ─── Scene environment ─── */
 function Environment() {
   const { scene } = useThree();
   useEffect(() => {
-    scene.fog = new THREE.FogExp2('#060a10', 0.026);
-    scene.background = new THREE.Color('#060a10');
+    scene.fog = new THREE.FogExp2('#081320', 0.028);
+    scene.background = new THREE.Color('#081320');
   }, [scene]);
   return (
     <>
-      <ambientLight color='#0a1020' intensity={0.5} />
-      <hemisphereLight skyColor='#1a2535' groundColor='#040810' intensity={0.9} />
-      <directionalLight color='#c0cee0' intensity={1.3} position={[3.5, 7, 3]} castShadow shadow-mapSize={[1024, 1024]} shadow-camera-far={30} />
+      <ambientLight color='#16223a' intensity={0.55} />
+      <hemisphereLight skyColor='#2a3c58' groundColor='#071217' intensity={0.95} />
+      <directionalLight color='#c8dbea' intensity={1.3} position={[3.5, 7, 3]} castShadow shadow-mapSize={[1024, 1024]} shadow-camera-far={30} />
       <directionalLight color='#8090a8' intensity={0.4} position={[-4, 3, -2]} />
       <directionalLight color='#3050a0' intensity={0.18} position={[0, -2, -5]} />
     </>
@@ -365,6 +402,7 @@ export default function WorkstationScene({ progressRef }) {
       gl={{ antialias: true, alpha: false }}
       style={{ width: '100%', height: '100%' }}
     >
+      <Background />
       <Environment />
       <Stars />
       <Haze />
