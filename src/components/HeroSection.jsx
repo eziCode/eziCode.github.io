@@ -92,7 +92,7 @@ export default function HeroSection({ onContactClick, onResumeClick, compact = f
         {/* Disciplines */}
         <p className="anim-cascade" style={{
           fontFamily:"'JetBrains Mono',monospace",
-          fontSize: compact ? 'clamp(0.85rem, 1.6vmin, 1.05rem)' : '0.8rem',
+          fontSize: compact ? 'clamp(0.95rem, 1.8vmin, 1.15rem)' : '0.95rem',
           color:'var(--text-muted)',
           marginBottom: compact ? 'clamp(16px, 2.5vh, 24px)' : 22,
           letterSpacing:'0.02em',
@@ -118,8 +118,8 @@ export default function HeroSection({ onContactClick, onResumeClick, compact = f
 
         {/* CTAs */}
         <div className="anim-cascade" style={{ display:'flex', gap:12, flexWrap:'wrap', animationDelay:'0.58s' }}>
-          <a href="/ezra_akresh_resume.pdf" download className="btn-outline" data-hover>
-            Download Résumé
+          <a href="/ezra_akresh_resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-outline" data-hover>
+            View Résumé
           </a>
           <button className="btn-outline" onClick={onContactClick} data-hover>
             Get in Touch
